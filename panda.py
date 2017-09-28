@@ -19,96 +19,48 @@ print('Matplotlib ver'+matplotlib.__version__)
 
 # In[288]:
 
-names=['Bob', 'Cam', 'Kate','Kendra','Abi']
-births=[915,52,32,83,15]
-age=[11,22,33,44,55,66]
-
-
-# In[290]:
-
+names = ['bob','Abi','Jatzet','Notengonickfull','Cami']
+births=[90,55,82,23,45]
 BabyDataSet=list(zip(names,births))
-BabyDataset2=list(zip(names,age))
-
-
-# In[184]:
-
 BabyDataSet
 
 
+# In[290]:
+df=pd.DataFrame(data=BabyDataSet,columns=['names','births'])
+df
+
+
+# In[184]:
+df.to_csv('birthsfile.csv',index=False,header=False)
+
 # In[292]:
 
-BabyDataset2
+Location=r'/home/jatzet/birthsfile.csv'
+df=pd.read_csv(Location)
+df=pd.read_csv(Location,header = None)
+df=pd.read_csv(Location,names=['names','births'])
 
 
 # In[294]:
-
-df = pd.DataFrame(data = BabyDataSet, columns = ['Names ', 'Births'])
-df
+import os
+os.remove(Location)
 
 
 # In[295]:
-
-df.to_csv('birthsfile.csv',index=False,header=False)
-
+Sorted = df.sort_values(['births'],ascending=False)
+Sorted.head(1)
+df['births'].max()
 
 
 # In[299]:
-
-Location=r'/home/jatzet/birthsfile.csv'
-
+df['births'].plot()
+MaxValues=df['births'].max()
+MaxName=df['names'][df['births']==df['births'].max()].values
+Text=str(MaxValue)+"_"+MaxName
 
 # In[304]:
 
-Location=r'/home/jatzet/birthsfile.csv'
-df = pd.read_csv(Location)
-
-
-# In[305]:
-
-df
-
-
-# In[334]:
-
-df = pd.read_csv(Location, header=None)
-df
-
-
-# In[333]:
-
-df=pd.read_csv(Location)
-df 
-
-
-# In[335]:
-
-df.dtypes
-df.Births.dtype
-
-
-
-# In[336]:
-
-sorted=df.sort_values(['Births'],ascending= False)
-sorted.head(1)
-df['Births'].max()
-
-
-# In[ ]:
-
-df['Births'].plot()
-MaxValue=df['Births'].max()
-MaxName=df['Names'][df['Births']==df['Births'].max()].values
-Text=str(MaxValue)+ "_" +MaxName
-
-
-# In[ ]:
-
-plt.annotate(Text,xy=(1,MaxValue), xytext=(8,0),xycoords=('axes fraction', 'data'),textcoords ='off set points')
-
-
-# In[337]:
-
+plt.annotate(Text,xy=(1,MaxValue),xytext=(8,0),xycoords=('axes fraction','data'),textcoords='offset points')
 print("The most popular name")
-df[df['Births']==df['Births'].max()]
+df[df['births']==df['births'].max()]
 
