@@ -21,24 +21,24 @@ print('Matplotlib ver'+matplotlib.__version__)
 
 names = ['bob','Abi','Jatzet','Notengonickfull','Cami']
 births=[90,55,82,23,45]
-BabyDataSet=list(zip(names,births))
+BabyDataSet=list(zip(Names,Births))
 BabyDataSet
 
 
 # In[290]:
-df=pd.DataFrame(data=BabyDataSet,columns=['names','births'])
+df=pd.DataFrame(data=BabyDataSet,columns=['Names','Births'])
 df
 
 
 # In[184]:
-df.to_csv('birthsfile.csv',index=False,header=False)
+df.to_csv('Birthsfile.csv',index=False,header=False)
 
 # In[292]:
 
-Location=r'/home/jatzet/birthsfile.csv'
+Location=r'/home/jatzet/Birthsfile.csv'
 df=pd.read_csv(Location)
 df=pd.read_csv(Location,header = None)
-df=pd.read_csv(Location,names=['names','births'])
+df=pd.read_csv(Location,names=['Names','Births'])
 
 
 # In[294]:
@@ -47,15 +47,15 @@ os.remove(Location)
 
 
 # In[295]:
-Sorted = df.sort_values(['births'],ascending=False)
+Sorted = df.sort_values(['Births'],ascending=False)
 Sorted.head(1)
-df['births'].max()
+df['Births'].max()
 
 
 # In[299]:
-df['births'].plot()
-MaxValues=df['births'].max()
-MaxName=df['names'][df['births']==df['births'].max()].values
+df['Births'].plot()
+MaxValues=df['Births'].max()
+MaxName=df['names'][df['Births']==df['Births'].max()].values
 Text=str(MaxValue)+"_"+MaxName
 
 # In[304]:
